@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Videos</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success" type="submit">Agregar Video</button>
+</form>
+
+<hr>
+<h3>Listado de Videos</h3>
+{% for v in videos %}
+<div class="card">
+    <strong>{{ v.titulo }}</strong><br>
+    <small>{{ v.descripcion }}</small><br>
+    <a href="{{ v.url }}" target="_blank">Ver Video</a><br>
+    <em>Publicado: {{ v.fecha_publicacion }}</em>
+</div>
+{% empty %}
+<p>No hay videos aún.</p>
+{% endfor %}
+{% endblock %}

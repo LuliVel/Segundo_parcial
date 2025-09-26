@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Usuarios</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Agregar Usuario</button>
+</form>
+
+<hr>
+<h3>Listado de Usuarios</h3>
+{% for u in usuarios %}
+<div class="card">
+    <strong>{{ u.nombre }}</strong> ({{ u.email }})<br>
+    Inscrito en: {{ u.curso_inscrito }}<br>
+    <em>Registrado: {{ u.fecha_registro }}</em>
+</div>
+{% empty %}
+<p>No hay usuarios aún.</p>
+{% endfor %}
+{% endblock %}
